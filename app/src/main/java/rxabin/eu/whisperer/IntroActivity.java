@@ -1,15 +1,27 @@
 package rxabin.eu.whisperer;
 
-import agency.tango.materialintroscreen.MaterialIntroActivity;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import rxabin.eu.whisperer.fragment.IntroFragment;
 
 import android.os.Bundle;
 
-public class IntroActivity extends MaterialIntroActivity {
+import com.github.paolorotolo.appintro.AppIntro;
+import com.github.paolorotolo.appintro.AppIntroFragment;
+import com.github.paolorotolo.appintro.model.SliderPage;
+
+public class IntroActivity extends AppIntro {
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_intro);
+        setFadeAnimation();
+        addSlide(IntroFragment.newInstance("a","a"));
+        SliderPage sliderPage = new SliderPage();
+        sliderPage.setTitle("Title");
+        sliderPage.setDescription("Subtitle");
+        sliderPage.setImageDrawable(R.mipmap.ic_launcher);
+        sliderPage.setBgColor(R.color.colorPrimary);
+        addSlide(AppIntroFragment.newInstance(sliderPage));
     }
 }
